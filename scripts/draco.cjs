@@ -1,8 +1,12 @@
-// Temporary no-op draco postinstall script
-// Original project expected this script to prepare draco decoders.
-// Create a no-op so npm install works in this development copy.
+const fs = require('fs');
+const path = require('path');
 
-console.log('scripts/draco.cjs: no-op script — skipping draco build in local environment');
+const dracoNodeModules = path.resolve(__dirname, '../node_modules/three/examples/jsm/libs/draco/gltf');
+const dracoPublic = path.resolve(__dirname, '../public/draco');
 
-// Exit successfully
-process.exit(0);
+if (!fs.existsSync(dracoPublic)) {
+    fs.mkdirSync(dracoPublic, { recursive: true });
+}
+
+fs.cpSync(dracoNodeModules, dracoPublic, { recursive: true });
+console.log('scripts/draco.cjs: Copied gltf draco files to public/draco');
