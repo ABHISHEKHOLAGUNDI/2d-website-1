@@ -52,7 +52,7 @@ export const loader = async ({ request, context }) => {
   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
   const canonicalUrl = `${config.url}${pathnameSliced}`;
 
-  const sessionSecret = context.cloudflare.env.SESSION_SECRET || 'default-secret-change-in-production';
+  const sessionSecret = process.env.SESSION_SECRET || 'default-secret-change-in-production';
 
   const { getSession, commitSession } = createCookieSessionStorage({
     cookie: {

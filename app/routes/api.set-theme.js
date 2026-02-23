@@ -4,7 +4,7 @@ export async function action({ request, context }) {
   const formData = await request.formData();
   const theme = formData.get('theme');
 
-  const sessionSecret = context.cloudflare.env.SESSION_SECRET || 'default-secret-change-in-production';
+  const sessionSecret = process.env.SESSION_SECRET || 'default-secret-change-in-production';
 
   const { getSession, commitSession } = createCookieSessionStorage({
     cookie: {
