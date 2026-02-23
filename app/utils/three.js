@@ -7,6 +7,8 @@ Cache.enabled = true;
 const dracoLoader = new DRACOLoader();
 const gltfLoader = new GLTFLoader();
 dracoLoader.setDecoderPath('/draco/');
+dracoLoader.setWithCredentials(true);
+gltfLoader.setWithCredentials(true);
 gltfLoader.setDRACOLoader(dracoLoader);
 
 /**
@@ -14,6 +16,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
  */
 export const modelLoader = gltfLoader;
 export const textureLoader = new TextureLoader();
+textureLoader.setWithCredentials(true);
 
 /**
  * Clean up a scene's materials and geometry
